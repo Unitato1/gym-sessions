@@ -7,3 +7,7 @@
 ["Shoulders press", "Bench press", "Military press"].each do |exercise_name|
   Exercise.find_or_create_by!(name: exercise_name)
 end
+
+["Shoulders", "Chest"].each do |workout_name|
+  Workout.find_or_create_by!(name: workout_name)
+end
