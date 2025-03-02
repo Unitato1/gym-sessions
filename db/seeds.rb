@@ -4,6 +4,6 @@
 #
 # Example:
 #
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+["Shoulders press", "Bench press", "Military press"].each do |exercise_name|
+  Exercise.find_or_create_by!(name: exercise_name)
+end
