@@ -1,0 +1,12 @@
+<h1>Hello this is your workout</h1>
+<div><%= @workout.name %></div>
+<div> 
+    <h2>All the exercises for the workout are: </h2>
+    <% @workout_exercises.each do |e| %>
+        <div>
+            Exercise<%= e.exercise.name %>
+            Reps:<%= e.reps %>
+            Sets:<%= e.sets %>
+        </div>
+    <% end %>
+</div>
