@@ -1,12 +1,46 @@
-<h1>Hello this is your workout</h1>
-<div><%= @workout.name %></div>
-<div> 
-    <h2>All the exercises for the workout are: </h2>
-    <% @workout_exercises.each do |e| %>
+<div class="container flex justify-between items-center bg-secondary text-white my-0 mx-0">
+    <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
+    <div><%= @workout.name %></div>
+    <%= image_tag 'icons/navbar.png', alt: 'Navbar icon' %>
+</div>
+<div class="px-3 pt-3">
+    <section class="flex flex-col gap-3">
+        <% @workout_exercises.each do |e| %>
+            <div class="bg-card flex px-4 py-2 rounded-xl">
+                <div class="w-1/2">
+                    <p>
+                        <p class="font-semibold"><%= e.exercise.name %></p>
+                    </p>
+                    <p>
+                        <p class="text-gray-500 text-sm">@author</p>
+                        <%# <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
+                    </p>
+                </div>
+                <div class="w-1/2 flex justify-center items-center gap-4">
+                    <% e.sets.times do %>
+                    <div class="w-6 h-6 flex items-center justify-center bg-check-set rounded-full text-xs font-bold">
+                        <%= e.reps %>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
         <div>
-            Exercise<%= e.exercise.name %>
-            Reps:<%= e.reps %>
-            Sets:<%= e.sets %>
+            <%= link_to "Add exercise", new_exercise_path, class="bg-card flex justify-center items-center my-2 px-4 py-2 rounded-xl w-auto"%>
         </div>
-    <% end %>
+    </section>
+    <section class="">
+        <div class="my-2 py-4 px-2 bg-card rounded-xl">
+            <h2>People who liked this workout</h2>
+            <div class="flex">
+                <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
+                <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
+                <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
+            </div>
+        </div>
+        <div class="flex gap-3">
+        <button class="bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl">Like</button>
+        <button class="bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl">Add to favourite</button>
+        </div>
+    </section>
 </div>
