@@ -1,4 +1,4 @@
-<div class="container flex justify-between items-center bg-secondary text-white my-0 mx-0">
+<div class="flex justify-between items-center bg-secondary text-white my-0 mx-0">
     <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
     <div><%= @workout.name %></div>
     <%= image_tag 'icons/navbar.png', alt: 'Navbar icon' %>
@@ -26,7 +26,6 @@
             </div>
         <% end %>
         <div>
-            <%= link_to "Add exercise", new_exercise_path, class="bg-card flex justify-center items-center my-2 px-4 py-2 rounded-xl w-auto"%>
         </div>
     </section>
     <section class="">
