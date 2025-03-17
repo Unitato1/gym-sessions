@@ -1,0 +1,5 @@
+<div class="bg-card px-4 py-2 rounded-xl">
+    <%= link_to workout.name, workout, class: "border-8" %>
+    <%= link_to "Edit", edit_workout_path(workout) %>
+    <%= button_to "Delete", workout, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+</div>

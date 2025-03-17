@@ -1,0 +1,11 @@
+<div class="mx-2">
+    <%= form_with model: @workout, class: "flex flex-col gap-2" do |f| %>
+        <div class="flex bg-card  flex-col p-4 m-auto gap-2">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "p-2 border-2" %>
+        </div>
+        <div class="p-4 bg-card m-auto">
+            <%= f.submit class: "border-2 p-2"%>
+        </div>
+    <% end %>
+</div>

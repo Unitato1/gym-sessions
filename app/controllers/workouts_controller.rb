@@ -17,6 +17,32 @@ class WorkoutsController < ApplicationController
     end
   end
 
+  def edit
+    @workout = Workout.find(params[:id])
+  end
+
+  def new
+    @workout = Workout.new
+  end
+
+  def create
+    @workout = Workout.new(workout_params)
+    if @workout.save
+      redirect_to @workout
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @workout = Workout.find(params[:id])
+    if @workout.destroy
+      redirect_to workouts_path
+    else
+      render @workout, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def workout_params
