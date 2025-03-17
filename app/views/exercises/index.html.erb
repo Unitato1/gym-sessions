@@ -1,10 +1,6 @@
 <h1 class="bg-card bg-card p-4 m-2">All exercises</h1>
 <div class="flex flex-col gap-2">
     <% @exercises.each do |e| %>
-        <div>
-            <p class="bg-card p-4 mx-2 rounded-2xl">
-                <%= e.name %>
-            </p>
-        </div>
+      <%= render "exercise", exercise: e %>
     <% end %>
 </div>
