@@ -1,32 +1,56 @@
 <div class="mx-2">
-    <%= form_with model: @workout, class: "flex flex-col gap-2" do |f| %>
-        <div class="flex bg-card flex-col p-4 m-auto gap-2">
-            <%= f.label :name %>
-            <%= f.text_field :name, class: "p-2 border-2" %>
-        </div>
+  <%= form_with model: @workout, class: "flex flex-col gap-2" do |f| %>
+    <div class="flex bg-card flex-col p-4 m-auto gap-2">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "p-2 border-2" %>
+    </div>
 
-        <div class="bg-card flex flex-col p-4 m-auto gap-2">
+    <div class="bg-card flex flex-col p-4 m-auto gap-2" data-controller="workout-exercises">
+        <div data-workout-exercises-target="test">
             <%= f.fields_for :workout_exercises do |wef| %>
+                <template data-workout-exercises-target="template">
                     <div class="border-1 p-1">
-                        <%= wef.collection_select :exercise_id, @exercises, :id, :name %>
+                    <%= wef.collection_select :exercise_id, @exercises, :id, :name %>
                     </div>
                     <div>
-                        <%= wef.label :sets %>
-                        <%= wef.number_field :sets, class: "border-1 p-1" %>
+                    <%= wef.label :sets %>
+                    <%= wef.number_field :sets, value: "", class: "border-1 p-1" %>
                     </div>
                     <div>
-                        <%= wef.label :reps %>
-                        <%= wef.number_field :reps, class: "border-1 p-1" %>
+                    <%= wef.label :reps %>
+                    <%= wef.number_field :reps, value: "", class: "border-1 p-1" %>
                     </div>
                     <div>
-                        <%= wef.label :_destroy, "Remove" %>
-                        <%= wef.check_box :_destroy, class: "border-1 p-1" %>
+                    <%= wef.label :_destroy, "Remove" %>
+                    <%= wef.check_box :_destroy, checked: false, class: "border-1 p-1" %>
                     </div>
-            <% end %>
+                </template>
+                <div class="border-1 p-1">
+                    <%= wef.collection_select :exercise_id, @exercises, :id, :name %>
+                </div>
+                <div>
+                    <%= wef.label :sets %>
+                    <%= wef.number_field :sets, class: "border-1 p-1" %>
+                </div>
+                <div>
+                    <%= wef.label :reps %>
+                    <%= wef.number_field :reps, class: "border-1 p-1" %>
+                </div>
+                <div>
+                    <%= wef.label :_destroy, "Remove" %>
+                    <%= wef.check_box :_destroy, class: "border-1 p-1" %>
+                </div>
+        <% end %>
         </div>
+        <div class="mt-4">
+            <button type="button" class="border-2 p-2" data-action="workout-exercises#addExercise">
+                Add Exercise
+            </button>
+        </div>
+    </div>
+    <div class="p-4 bg-card m-auto">
+      <%= f.submit class: "border-2 p-2" %>
+    </div>
+  <% end %>
 
-        <div class="p-4 bg-card m-auto">
-            <%= f.submit class: "border-2 p-2" %>
-        </div>
-    <% end %>
 </div>
