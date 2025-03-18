@@ -19,10 +19,22 @@ class WorkoutsController < ApplicationController
 
   def edit
     @workout = Workout.find(params[:id])
+    if @workout.workout_exercises.empty?
+      @workout_exercises = @workout.workout_exercises.build
+    else
+      @workout_exercises = @workout.workout_exercises
+    end
+    @exercises = Exercise.all
   end
 
   def new
     @workout = Workout.new
+    if @workout.workout_exercises.empty?
+      @workout_exercises = @workout.workout_exercises.build
+    else
+      @workout_exercises = @workout.workout_exercises
+    end
+    @exercises = Exercise.all
   end
 
   def create
@@ -46,6 +58,6 @@ class WorkoutsController < ApplicationController
   private
 
   def workout_params
-    params.require(:workout).permit(:name)
+    params.require(:workout).permit(:name, workout_exercises_attributes: [ :id, :exercise_id, :sets, :reps, :_destroy ])
   end
 end
