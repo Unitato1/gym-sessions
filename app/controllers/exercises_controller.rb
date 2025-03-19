@@ -9,6 +9,7 @@ class ExercisesController < ApplicationController
     @exercise = Exercise.new
   end
   def create
+    @exercise = Exercise.new(exercise_parms)
     if @exercise.save
       redirect_to @exercise
     else
