@@ -1,3 +1,7 @@
 <div>
     <%= render "exercise", exercise: @exercise %>
+    <div class="flex gap-4">
+        <%= link_to "Edit", edit_exercise_path(@exercise), class: "border-1 p-1 rounded-md" %>
+        <%= button_to "Delete", @exercise, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "border-1 p-1 rounded-md" %>
+    </div>
 </div>
