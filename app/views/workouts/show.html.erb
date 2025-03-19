@@ -8,9 +8,7 @@
         <% @workout_exercises.each do |e| %>
             <div class="bg-card flex px-4 py-2 rounded-xl">
                 <div class="w-1/2">
-                    <p>
-                        <p class="font-semibold"><%= e.exercise.name %></p>
-                    </p>
+                    <%= render "exercises/exercise", exercise: e.exercise %>
                     <p>
                         <p class="text-gray-500 text-sm">@author</p>
                         <%# <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
