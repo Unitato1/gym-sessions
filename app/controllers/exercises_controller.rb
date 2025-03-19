@@ -34,7 +34,7 @@ class ExercisesController < ApplicationController
   end
   private
   def exercise_parms
-    params.require(:exercise).permit(:name)
+    params.require(:exercise).permit(:name, :description)
   end
   def get_exercise
     @exercise = Exercise.find(params[:id])

@@ -15,10 +15,10 @@ export default class extends Controller {
   addExercise() {
     this.index++;
 
-    const exercise_form = this.templateTarget.content.cloneNode(true);
+    const exercise_form = this.templateTarget.cloneNode(true);
 
     const nodes = exercise_form.querySelectorAll('*');
-    
+
     nodes.forEach(node => {
       this.updateNodeAttributes(node);
     });
@@ -28,16 +28,19 @@ export default class extends Controller {
 
   updateNodeAttributes(node) {
     if (node.name) {
+      node.value = "";
       const newName = node.name.replace(/\[\d+\]/, `[${this.index}]`);
       node.setAttribute('name', newName);
     }
 
     if (node.id) {
+      node.value = "";
       const newId = node.id.replace(/\_\d+/, `_${this.index}`);
       node.setAttribute('id', newId);
     }
 
     if (node.tagName.toLowerCase() === 'label' && node.getAttribute('for')) {
+      node.value = "";
       const newFor = node.getAttribute('for').replace(/\_\d+/, `_${this.index}`);
       node.setAttribute('for', newFor);
     }

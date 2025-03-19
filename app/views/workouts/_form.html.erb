@@ -4,27 +4,10 @@
       <%= f.label :name %>
       <%= f.text_field :name, class: "p-2 border-2" %>
     </div>
-
     <div class="bg-card flex flex-col p-4 m-auto gap-2" data-controller="workout-exercises">
         <div data-workout-exercises-target="test">
             <%= f.fields_for :workout_exercises do |wef| %>
-                <template data-workout-exercises-target="template">
-                    <div class="border-1 p-1">
-                    <%= wef.collection_select :exercise_id, @exercises, :id, :name %>
-                    </div>
-                    <div>
-                    <%= wef.label :sets %>
-                    <%= wef.number_field :sets, value: "", class: "border-1 p-1" %>
-                    </div>
-                    <div>
-                    <%= wef.label :reps %>
-                    <%= wef.number_field :reps, value: "", class: "border-1 p-1" %>
-                    </div>
-                    <div>
-                    <%= wef.label :_destroy, "Remove" %>
-                    <%= wef.check_box :_destroy, checked: false, class: "border-1 p-1" %>
-                    </div>
-                </template>
+                <div data-workout-exercises-target="template">
                 <div class="border-1 p-1">
                     <%= wef.collection_select :exercise_id, @exercises, :id, :name %>
                 </div>
@@ -39,6 +22,7 @@
                 <div>
                     <%= wef.label :_destroy, "Remove" %>
                     <%= wef.check_box :_destroy, class: "border-1 p-1" %>
+                </div>
                 </div>
         <% end %>
         </div>

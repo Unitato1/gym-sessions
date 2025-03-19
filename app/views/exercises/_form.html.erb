@@ -3,6 +3,10 @@
         <%= f.label :name %>
         <%= f.text_field :name, class: "p-2 border-2" %>
     </div>
+    <div class="flex bg-card  flex-col p-4 m-auto gap-2">
+        <%= f.label :description %>
+        <%= f.rich_text_area :description, class: "p-2 border-2" %>
+    </div>
     <div class="p-4 bg-card m-auto">
         <%= f.submit class: "border-2 p-2"%>
     </div>
