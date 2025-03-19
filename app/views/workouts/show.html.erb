@@ -8,12 +8,9 @@
         <% @workout_exercises.each do |e| %>
             <div class="bg-card flex px-4 py-2 rounded-xl">
                 <div class="w-1/2">
-                    <p>
-                        <p class="font-semibold"><%= e.exercise.name %></p>
-                    </p>
+                    <%= render "exercises/exercise", exercise: e.exercise %>
                     <p>
                         <p class="text-gray-500 text-sm">@author</p>
-                        <%# <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
                     </p>
                 </div>
                 <div class="w-1/2 flex justify-center items-center gap-4">
@@ -27,6 +24,7 @@
         <% end %>
         <div>
         </div>
+      <%= render "workout", workout: @workout %>
     </section>
     <section class="">
         <div class="my-2 py-4 px-2 bg-card rounded-xl">
@@ -42,4 +40,5 @@
         <button class="bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl">Add to favourite</button>
         </div>
     </section>
+
 </div>

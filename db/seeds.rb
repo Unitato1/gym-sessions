@@ -3,19 +3,19 @@ WorkoutExercise.destroy_all
 Workout.destroy_all
 Exercise.destroy_all
 
-# Create exercises
+# Create exercises with descriptions
 exercises = [
-  "Bench Press",
-  "Squats",
-  "Deadlift",
-  "Pull-Ups",
-  "Push-Ups",
-  "Lunges",
-  "Bicep Curls",
-  "Tricep Dips",
-  "Plank",
-  "Russian Twists"
-].map { |name| Exercise.create!(name: name) }
+  { name: "Bench Press", description: "A classic upper body exercise that targets the chest, shoulders, and triceps." },
+  { name: "Squats", description: "A fundamental lower body exercise working the quads, glutes, and hamstrings." },
+  { name: "Deadlift", description: "A full-body strength movement primarily targeting the back, glutes, and hamstrings." },
+  { name: "Pull-Ups", description: "An upper body exercise focusing on the back and biceps using bodyweight." },
+  { name: "Push-Ups", description: "A versatile bodyweight exercise for building chest, shoulders, and triceps strength." },
+  { name: "Lunges", description: "A unilateral lower body exercise improving balance and leg strength." },
+  { name: "Bicep Curls", description: "An isolation exercise targeting the biceps for arm development." },
+  { name: "Tricep Dips", description: "A bodyweight exercise to strengthen triceps and chest muscles." },
+  { name: "Plank", description: "A core stability exercise that engages the abs, lower back, and shoulders." },
+  { name: "Russian Twists", description: "A rotational core exercise that enhances oblique strength and balance." }
+].map { |data| Exercise.create!(data) }
 
 # Create workouts
 workouts = [
@@ -47,7 +47,7 @@ workout_exercises = [
 
   { workout: workouts[4], exercise: exercises[4], sets: 3, reps: 15 }, # Push-Ups in Beginner
   { workout: workouts[4], exercise: exercises[6], sets: 3, reps: 12 }, # Bicep Curls in Beginner
-  { workout: workouts[4], exercise: exercises[8], sets: 3, reps: 45 }, # Plank (seconds) in Beginner
+  { workout: workouts[4], exercise: exercises[8], sets: 3, reps: 45 } # Plank (seconds) in Beginner
 ]
 
 # Insert records into WorkoutExercise join table
