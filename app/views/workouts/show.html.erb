@@ -21,10 +21,7 @@
                     <% end %>
                 </div>
             </div>
-        <% end %>
-        <div>
-        </div>
-      <%= render "workout", workout: @workout %>
+            <% end %>
     </section>
     <section class="">
         <div class="my-2 py-4 px-2 bg-card rounded-xl">
@@ -40,5 +37,7 @@
         <button class="bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl">Add to favourite</button>
         </div>
     </section>
-
+    <div class="bg-card rounded-md my-2 p-2">
+        <%= render "workouts/shared/links", workout: @workout %>
+    </div>
 </div>

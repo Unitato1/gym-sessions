@@ -1,0 +1,4 @@
+<div class="flex gap-4">
+    <%= link_to "Edit", edit_workout_path(workout), class: "underline border-1 rounded-lg p-1"%>
+    <%= button_to "Delete", workout, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "underline border-1 rounded-lg p-1 hover:cursor-pointer" %>
+</div>
