@@ -48,8 +48,9 @@ class WorkoutsController < ApplicationController
   end
 
   def destroy
+    name = @workout.name
     if @workout.destroy
-      redirect_to workouts_path
+      redirect_to workouts_path, alert: "Deleted " + name + " workout!"
     else
       render @workout, status: :unprocessable_entity
     end

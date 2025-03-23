@@ -24,7 +24,7 @@
   </head>
   <body class="bg-primary flex flex-col justify-center gap-2 w-full">
      <% if flash[:alert] %>
-      <div class="fixed top-4 left-1/2 transform -translate-x-1/2 p-4 w-80 bg-red-500 text-white rounded-lg shadow-lg">
+      <div class="fixed top-4 left-1/2 transform -translate-x-1/2 p-4 w-80 bg-red-500 text-white rounded-lg shadow-lg transition-opacity ease-in duration-700 opacity-100 hover:opacity-0">
         <%= flash[:alert] %>
       </div>
     <% end %>
