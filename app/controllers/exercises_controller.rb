@@ -1,5 +1,6 @@
 class ExercisesController < ApplicationController
   before_action :get_exercise, only: [ :edit, :destroy, :update, :show ]
+  before_action :authenticate_user!
   def index
     @exercises = Exercise.all
   end
