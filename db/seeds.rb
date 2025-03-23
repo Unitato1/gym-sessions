@@ -2,6 +2,7 @@
 WorkoutExercise.destroy_all
 Workout.destroy_all
 Exercise.destroy_all
+User.destroy_all
 
 # Create exercises with descriptions
 exercises = [
@@ -17,14 +18,23 @@ exercises = [
   { name: "Russian Twists", description: "A rotational core exercise that enhances oblique strength and balance." }
 ].map { |data| Exercise.create!(data) }
 
-# Create workouts
+# Create random users
+users = 5.times.map do
+  User.create!(
+    email: Faker::Internet.unique.email,
+    password: 'securepassword',
+    password_confirmation: 'securepassword'
+  )
+end
+
+# Create workouts and associate each workout with a random user
 workouts = [
   "Upper Body Strength",
   "Lower Body Power",
   "Full Body Strength",
   "Core & Abs Focus",
   "Beginner Workout"
-].map { |name| Workout.create!(name: name) }
+].map { |name| Workout.create!(name: name, user: users.sample) }
 
 # Define workout exercises with sets and reps
 workout_exercises = [
@@ -53,9 +63,10 @@ workout_exercises = [
 # Insert records into WorkoutExercise join table
 workout_exercises.each { |we| WorkoutExercise.create!(we) }
 
-User.create!(
+test_u = User.create!(
   email: 'mail@test.com',
-  password: 'securepassword',
-  password_confirmation: 'securepassword'
+  password: '12345678',
+  password_confirmation: '12345678'
 )
+Workout.create!(name: "My Test Chest Exercise", user: test_u)
 puts "✅ Seed data created successfully!"

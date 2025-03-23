@@ -1,4 +1,6 @@
 <div class="bg-card px-4 py-2 rounded-xl">
     <%= link_to workout.name, workout, class: "underline text-lg" %>
-    <%= render "workouts/shared/links", workout: workout %>
+    <% if current_user == workout.user %>
+        <%= render "workouts/shared/links", workout: workout %>
+    <% end %>
 </div>

@@ -1,0 +1,5 @@
+<div class="mg-2 flex flex-col gap-2">
+  <% @workouts.each do |workout| %>
+      <%= render "workouts/workout", workout: workout %>
+  <% end %>
+</div>
