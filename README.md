@@ -18,6 +18,10 @@ Things you may want to cover:
   rails db:seed
   data for seed was created by chatgpt
 
+  after the seed you can use email and password
+  email: mail@test.com
+  password: 12345678
+
 - Main point of the application
   user can sign up | log in | sign out
   user can create|edit|destroy exercises
