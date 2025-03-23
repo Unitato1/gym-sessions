@@ -4,7 +4,16 @@ Workout.destroy_all
 Exercise.destroy_all
 User.destroy_all
 
-# Create exercises with descriptions
+# Create random users
+users = 5.times.map do
+  User.create!(
+    email: Faker::Internet.unique.email,
+    password: 'securepassword',
+    password_confirmation: 'securepassword'
+  )
+end
+
+# Create exercises and associate each one with a random user
 exercises = [
   { name: "Bench Press", description: "A classic upper body exercise that targets the chest, shoulders, and triceps." },
   { name: "Squats", description: "A fundamental lower body exercise working the quads, glutes, and hamstrings." },
@@ -16,16 +25,7 @@ exercises = [
   { name: "Tricep Dips", description: "A bodyweight exercise to strengthen triceps and chest muscles." },
   { name: "Plank", description: "A core stability exercise that engages the abs, lower back, and shoulders." },
   { name: "Russian Twists", description: "A rotational core exercise that enhances oblique strength and balance." }
-].map { |data| Exercise.create!(data) }
-
-# Create random users
-users = 5.times.map do
-  User.create!(
-    email: Faker::Internet.unique.email,
-    password: 'securepassword',
-    password_confirmation: 'securepassword'
-  )
-end
+].map { |data| Exercise.create!(data.merge(user: users.sample)) }
 
 # Create workouts and associate each workout with a random user
 workouts = [
@@ -63,10 +63,13 @@ workout_exercises = [
 # Insert records into WorkoutExercise join table
 workout_exercises.each { |we| WorkoutExercise.create!(we) }
 
-test_u = User.create!(
+# Create a test user with a workout
+test_user = User.create!(
   email: 'mail@test.com',
   password: '12345678',
   password_confirmation: '12345678'
 )
-Workout.create!(name: "My Test Chest Exercise", user: test_u)
+
+Workout.create!(name: "My Test Chest Exercise", user: test_user)
+
 puts "✅ Seed data created successfully!"

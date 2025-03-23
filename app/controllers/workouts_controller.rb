@@ -4,7 +4,7 @@ class WorkoutsController < ApplicationController
   before_action :authorize_user, only: [ :edit, :update, :destroy ]
 
   def index
-    @workouts = Workout.all
+    @workouts = Workout.includes(:user).all
   end
 
   def show
@@ -31,11 +31,10 @@ class WorkoutsController < ApplicationController
   def new
     @workout = current_user.workouts.new
     if @workout.workout_exercises.empty?
-      @workout_exercises = @workout.workout_exercises.build
+      @workout_exercises = [ @workout.workout_exercises.build ]
     else
       @workout_exercises = @workout.workout_exercises
     end
-    @exercises = Exercise.all
   end
 
   def create
