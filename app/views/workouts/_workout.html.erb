@@ -1,4 +1,5 @@
 <div class="bg-card px-4 py-2 rounded-xl">
     <%= link_to workout.name, workout, class: "underline text-lg" %>
+    <p class="text-gray-500 text-sm">@<%= workout.user.email.split('@').first %></p>
     <%= render "workouts/shared/links", workout: workout %>
 </div>

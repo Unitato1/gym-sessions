@@ -1,16 +1,17 @@
 class ExercisesController < ApplicationController
   before_action :get_exercise, only: [ :edit, :destroy, :update, :show ]
+  before_action :authorize_user, only: [ :edit, :destroy, :update ]
   before_action :authenticate_user!
   def index
-    @exercises = Exercise.all
+    @exercises = Exercise.includes(:user).all
   end
   def show
   end
   def new
-    @exercise = Exercise.new
+    @exercise = current_user.exercises.new
   end
   def create
-    @exercise = Exercise.new(exercise_parms)
+    @exercise = current_user.exercises.new(exercise_parms)
     if @exercise.save
       redirect_to @exercise
     else
@@ -38,7 +39,14 @@ class ExercisesController < ApplicationController
   def exercise_parms
     params.require(:exercise).permit(:name, :description)
   end
+
   def get_exercise
     @exercise = Exercise.find(params[:id])
+  end
+
+  def authorize_user
+    if @exercise.user != current_user
+      redirect_to exercises_path, alert: "You are not authorized to edit or delete this exercise."
+    end
   end
 end

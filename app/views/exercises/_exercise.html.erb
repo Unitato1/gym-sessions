@@ -1,2 +1,3 @@
 <%= link_to exercise.name, exercise, class: "underline" %>
 <%= exercise.description %>
+<p class="text-gray-500 text-sm">@<%= exercise.user.email.split('@').first %></p>

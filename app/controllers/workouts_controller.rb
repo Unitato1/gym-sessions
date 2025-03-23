@@ -1,16 +1,17 @@
 class WorkoutsController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_workout, only: [ :destroy, :edit, :update, :show ]
+  before_action :authorize_user, only: [ :edit, :update, :destroy ]
+
   def index
-    @workouts = Workout.all
+    @workouts = Workout.includes(:user).all
   end
 
   def show
-    @workout = Workout.find(params[:id])
     @workout_exercises = @workout.workout_exercises
   end
 
   def update
-    @workout = Workout.find(params[:id])
     if @workout.update(workout_params)
       redirect_to @workout, notice: "Workout updated successfully."
     else
@@ -19,7 +20,6 @@ class WorkoutsController < ApplicationController
   end
 
   def edit
-    @workout = Workout.find(params[:id])
     if @workout.workout_exercises.empty?
       @workout_exercises = @workout.workout_exercises.build
     else
@@ -29,17 +29,16 @@ class WorkoutsController < ApplicationController
   end
 
   def new
-    @workout = Workout.new
+    @workout = current_user.workouts.new
     if @workout.workout_exercises.empty?
-      @workout_exercises = @workout.workout_exercises.build
+      @workout_exercises = [ @workout.workout_exercises.build ]
     else
       @workout_exercises = @workout.workout_exercises
     end
-    @exercises = Exercise.all
   end
 
   def create
-    @workout = Workout.new(workout_params)
+    @workout = current_user.workouts.new(workout_params)
     if @workout.save
       redirect_to @workout
     else
@@ -48,9 +47,9 @@ class WorkoutsController < ApplicationController
   end
 
   def destroy
-    @workout = Workout.find(params[:id])
+    name = @workout.name
     if @workout.destroy
-      redirect_to workouts_path
+      redirect_to workouts_path, alert: "Deleted " + name + " workout!"
     else
       render @workout, status: :unprocessable_entity
     end
@@ -60,5 +59,13 @@ class WorkoutsController < ApplicationController
 
   def workout_params
     params.require(:workout).permit(:name, workout_exercises_attributes: [ :id, :exercise_id, :sets, :reps, :_destroy ])
+  end
+  def find_workout
+    @workout = Workout.find(params[:id])
+  end
+  def authorize_user
+    if @workout.user != current_user
+      redirect_to workouts_path, alert: "You are not authorized to edit or delete this workout."
+    end
   end
 end
