@@ -1,35 +1,54 @@
-# README
+# Gym Sessions App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This README provides instructions for setting up and running the Gym Sessions application.
 
-Things you may want to cover:
+## Ruby Version
 
-- Ruby version
-  3.4.2
+- Ruby version: `3.4.2`
 
-- System dependencies
-  run bundle install
+## System Dependencies
 
-- Database creation
-  rails db:migrate
+Run the following command to install the necessary dependencies:
 
-- Database initialization
-  rails db:seed
-  data for seed was created by chatgpt
+- bundle install
 
-  after the seed you can use email and password
-  email: mail@test.com
-  password: 12345678
+## Database Setup
 
-- Main point of the application
-  user can sign up | log in | sign out
-  user can create|edit|destroy exercises
-  user can create|edit|destroy workouts
-  user can see workouts they create
-  user can see all workouts|exercises
+To set up the database, run the following commands:
 
-- TODOS
-  create a copy button for users to create their own copy of workout where they can invite users|change exercises|sets|reps|add people and plan it for future as a session
-  new workout where you can select only your own exercises
-  profiles for users visible by other users, users can checkout other users and their workout individually
+1. **Database creation**:
+
+- rails db:migrate
+
+2. **Database initialization** (this will seed some initial data):
+
+rails db:seed
+
+The data for seeding was created with the help of ChatGPT.
+
+## After Seeding
+
+You can use the following credentials to log in:
+
+- **Email**: `mail@test.com`
+- **Password**: `12345678`
+
+## Main Features of the Application
+
+- Users can:
+- Sign up, log in, and sign out.
+- Create, edit, and delete exercises.
+- Create, edit, and delete workouts.
+- View workouts they have created.
+- View all workouts and exercises.
+
+## TODOs
+
+- Create a feature to allow users to copy a workout:
+- Users can create their own copy of a workout, invite others, change exercises, sets, reps, add people, and plan the workout for future sessions.
+
+- Implement a new workout creation feature where users can:
+- Select only their own exercises.
+
+- Implement user profiles:
+- Users can view other users' profiles and check out their workouts individually.
