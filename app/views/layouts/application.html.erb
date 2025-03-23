@@ -22,9 +22,9 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body class="bg-primary flex flex-col gap-3">
-    <main class="flex-auto">
-      <%= render "accessories/header"%>
+  <body class="bg-primary flex flex-col justify-center gap-2 w-full">
+    <%= render "accessories/header"%>
+    <main class="flex-auto w-full lg:w-1/2 mx-auto">
       <%= yield %>
     </main>
   </body>
