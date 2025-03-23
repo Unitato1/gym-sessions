@@ -53,4 +53,9 @@ workout_exercises = [
 # Insert records into WorkoutExercise join table
 workout_exercises.each { |we| WorkoutExercise.create!(we) }
 
+User.create!(
+  email: 'mail@test.com',
+  password: 'securepassword',
+  password_confirmation: 'securepassword'
+)
 puts "✅ Seed data created successfully!"

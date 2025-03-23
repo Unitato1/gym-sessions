@@ -1,0 +1,33 @@
+
+<div class="bg-card shadow-md rounded-lg p-6 max-w-md mx-auto">
+  <h2 class="text-2xl font-bold text-center mb-6">Sign up</h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-4" }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="flex flex-col">
+      <%= f.label :email, class: "font-medium text-gray-700" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 p-2 border rounded-lg w-full focus:ring focus:ring-blue-300" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= f.label :password, class: "font-medium text-gray-700" %>
+      <% if @minimum_password_length %>
+        <em class="text-sm text-gray-500">(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 p-2 border rounded-lg w-full focus:ring focus:ring-blue-300" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= f.label :password_confirmation, class: "font-medium text-gray-700" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 p-2 border rounded-lg w-full focus:ring focus:ring-blue-300" %>
+    </div>
+
+    <div class="flex justify-center">
+      <%= f.submit "Sign up", class: "bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition" %>
+    </div>
+  <% end %>
+
+  <div class="mt-4 text-center">
+      <%= link_to "Log in", new_session_path(resource_name) %><br />
+  </div>
+</div>
