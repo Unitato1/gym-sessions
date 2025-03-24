@@ -1,8 +1,4 @@
-<div class="flex justify-between items-center bg-secondary text-white my-0 mx-0">
-    <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
-    <div><%= @workout.name %></div>
-    <%= image_tag 'icons/navbar.png', alt: 'Navbar icon' %>
-</div>
+<% provide(:title, "#{@workout.name}") %>
 <div class="px-3 pt-3">
     <section class="flex flex-col gap-3">
         <% @workout_exercises.each do |e| %>
@@ -30,8 +26,8 @@
             </div>
         </div>
         <div class="flex gap-3">
-        <button class="bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl">Like</button>
-        <button class="bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl">Add to favourite</button>
+            <button class="bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl">Like</button>
+            <button class="bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl">Add to favourite</button>
         </div>
     </section>
     <%= render "workouts/shared/links", workout: @workout %>

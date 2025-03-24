@@ -1,5 +1,7 @@
-<div class="bg-card px-4 py-2 rounded-xl">
-    <%= link_to workout.name, workout, class: "underline text-lg" %>
-    <p class="text-gray-500 text-sm">@<%= workout.user.email.split('@').first %></p>
+<div class="bg-card p-2.5 rounded-xl flex justify-between items-center">
+    <div>
+        <%= link_to workout.name, workout, class: "underline text-lg" %>
+        <p class="text-gray-500 text-sm">@<%= workout.user.email.split('@').first %></p>
+    </div>
     <%= render "workouts/shared/links", workout: workout %>
 </div>

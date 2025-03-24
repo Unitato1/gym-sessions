@@ -1,10 +1,26 @@
-<header class="bg-secondary p-4 mb-2 flex flex-wrap gap-2">
-    <%= link_to "Workouts", workouts_path, class: "border-2 p-2 rounded-xl bg-primary text-white" %>
-    <%= link_to "New Workout", new_workout_path, class: "border-2 p-2 rounded-xl bg-primary text-white" %>
-    <%= link_to "Exercises", exercises_path, class: "border-2 p-2 rounded-xl bg-primary text-white" %>
-    <%= link_to "New Exercise", new_exercise_path, class: "border-2 p-2 rounded-xl bg-primary text-white" %>
-    <% if user_signed_in? %>
-        <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to sign out?' }, class: "border-2 p-2 rounded-xl bg-primary text-white" %>
-        <%= link_to 'My Created Workouts', user_path(current_user), class: "border-2 p-2 rounded-xl bg-primary text-white" %>
-    <% end %>
+<header data-controller="navigation" class="shadow-lg">
+    <div class="flex justify-between items-center bg-secondary text-white m-0 p-2">
+        <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
+        <p>
+            <h1 class="italic underline text-2xl font-serif"><%= content_for(:title) || "Gym" %></h1>
+        </p>
+        <div>
+            <button class="m-0 p-0"  data-action="navigation#show" data-navigation-target="hamburgerMenu">
+                <%= image_tag 'icons/navbar.png', alt: 'Navbar icon', class: "md:hidden block" %>
+            </button>
+            <div data-navigation-target="hamburgerMenuNavigation" class="hidden md:block">
+                <div class="flex flex-col bg-secondary p-4 mb-2 gap-2 absolute right-0 top-13 text-sm rounded-bl-lg shadow-lg">
+                    <%= link_to "Workouts", workouts_path, class: "underline text-white text-lg md:text-xl" %>
+                    <%= link_to "New Workout", new_workout_path, class: "underline text-white text-lg md:text-xl" %>
+                    <%= link_to "Exercises", exercises_path, class: "underline text-white text-lg md:text-xl" %>
+                    <%= link_to "New Exercise", new_exercise_path, class: "underline text-white text-lg md:text-xl" %>
+                    
+                    <% if user_signed_in? %>
+                        <%= link_to 'My Workouts', user_path(current_user), class: "underline text-white text-lg md:text-xl" %>
+                        <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to sign out?' }, class: "underline text-white text-lg md:text-xl" %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
