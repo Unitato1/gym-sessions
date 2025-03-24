@@ -3,6 +3,7 @@ WorkoutExercise.destroy_all
 Workout.destroy_all
 Exercise.destroy_all
 User.destroy_all
+LikesWorkout.destroy_all
 
 # Create random users
 users = 5.times.map do
@@ -38,26 +39,26 @@ workouts = [
 
 # Define workout exercises with sets and reps
 workout_exercises = [
-  { workout: workouts[0], exercise: exercises[0], sets: 4, reps: 8 }, # Bench Press in Upper Body
-  { workout: workouts[0], exercise: exercises[3], sets: 3, reps: 10 }, # Pull-Ups in Upper Body
-  { workout: workouts[0], exercise: exercises[6], sets: 3, reps: 12 }, # Bicep Curls in Upper Body
+  { workout: workouts[0], exercise: exercises[0], sets: 4, reps: 8 },
+  { workout: workouts[0], exercise: exercises[3], sets: 3, reps: 10 },
+  { workout: workouts[0], exercise: exercises[6], sets: 3, reps: 12 },
 
-  { workout: workouts[1], exercise: exercises[1], sets: 4, reps: 10 }, # Squats in Lower Body
-  { workout: workouts[1], exercise: exercises[5], sets: 3, reps: 12 }, # Lunges in Lower Body
-  { workout: workouts[1], exercise: exercises[2], sets: 4, reps: 6 },  # Deadlift in Lower Body
+  { workout: workouts[1], exercise: exercises[1], sets: 4, reps: 10 },
+  { workout: workouts[1], exercise: exercises[5], sets: 3, reps: 12 },
+  { workout: workouts[1], exercise: exercises[2], sets: 4, reps: 6 },
 
-  { workout: workouts[2], exercise: exercises[0], sets: 4, reps: 8 },  # Bench Press in Full Body
-  { workout: workouts[2], exercise: exercises[1], sets: 4, reps: 10 }, # Squats in Full Body
-  { workout: workouts[2], exercise: exercises[2], sets: 3, reps: 6 },  # Deadlift in Full Body
-  { workout: workouts[2], exercise: exercises[3], sets: 3, reps: 10 }, # Pull-Ups in Full Body
-  { workout: workouts[2], exercise: exercises[4], sets: 3, reps: 15 }, # Push-Ups in Full Body
+  { workout: workouts[2], exercise: exercises[0], sets: 4, reps: 8 },
+  { workout: workouts[2], exercise: exercises[1], sets: 4, reps: 10 },
+  { workout: workouts[2], exercise: exercises[2], sets: 3, reps: 6 },
+  { workout: workouts[2], exercise: exercises[3], sets: 3, reps: 10 },
+  { workout: workouts[2], exercise: exercises[4], sets: 3, reps: 15 },
 
-  { workout: workouts[3], exercise: exercises[8], sets: 3, reps: 60 }, # Plank (seconds) in Core Focus
-  { workout: workouts[3], exercise: exercises[9], sets: 3, reps: 20 }, # Russian Twists in Core Focus
+  { workout: workouts[3], exercise: exercises[8], sets: 3, reps: 60 },
+  { workout: workouts[3], exercise: exercises[9], sets: 3, reps: 20 },
 
-  { workout: workouts[4], exercise: exercises[4], sets: 3, reps: 15 }, # Push-Ups in Beginner
-  { workout: workouts[4], exercise: exercises[6], sets: 3, reps: 12 }, # Bicep Curls in Beginner
-  { workout: workouts[4], exercise: exercises[8], sets: 3, reps: 45 } # Plank (seconds) in Beginner
+  { workout: workouts[4], exercise: exercises[4], sets: 3, reps: 15 },
+  { workout: workouts[4], exercise: exercises[6], sets: 3, reps: 12 },
+  { workout: workouts[4], exercise: exercises[8], sets: 3, reps: 45 }
 ]
 
 # Insert records into WorkoutExercise join table
@@ -71,5 +72,19 @@ test_user = User.create!(
 )
 
 Workout.create!(name: "My Test Chest Exercise", user: test_user)
+
+# Create Likes: each user should have at least 3 likes
+users.each do |user|
+  # Select 3 random workouts for each user
+  random_workouts = workouts.sample(3)
+  random_workouts.each do |workout|
+    LikesWorkout.create!(user: user, workout: workout)
+  end
+end
+
+# Hardcode likes for the test user
+LikesWorkout.create!(user: test_user, workout: workouts[0]) # Upper Body Strength
+LikesWorkout.create!(user: test_user, workout: workouts[2]) # Full Body Strength
+LikesWorkout.create!(user: test_user, workout: workouts[4]) # Beginner Workout
 
 puts "✅ Seed data created successfully!"

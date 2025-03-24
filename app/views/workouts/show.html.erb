@@ -26,7 +26,11 @@
             </div>
         </div>
         <div class="flex gap-3">
-            <button class="bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl">Like</button>
+            <% if user_signed_in? %>
+                <%= button_to 'Like', like_workout_path(@workout), method: :post, class: 'btn btn-primary' %>
+            <% else %>
+                <button disabled class="btn btn-secondary">Liked</button>
+            <% end %>
             <button class="bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl">Add to favourite</button>
         </div>
     </section>

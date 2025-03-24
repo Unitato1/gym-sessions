@@ -1,6 +1,6 @@
 class WorkoutsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_workout, only: [ :destroy, :edit, :update, :show ]
+  before_action :find_workout, only: [ :destroy, :edit, :update, :show, :like ]
   before_action :authorize_user, only: [ :edit, :update, :destroy ]
 
   def index
@@ -52,6 +52,15 @@ class WorkoutsController < ApplicationController
       redirect_to workouts_path, alert: "Deleted " + name + " workout!"
     else
       render @workout, status: :unprocessable_entity
+    end
+  end
+
+  def like
+    @workout = Workout.find(params[:id])
+    if current_user.likes << @workout
+      redirect_to current_user, notice: "Workout liked!"
+    else
+      redirect_to workout_path(@workout), alert: "Something went wrong."
     end
   end
 
