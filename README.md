@@ -26,6 +26,15 @@ rails db:seed
 
 The data for seeding was created with the help of ChatGPT.
 
+## Database Tables
+
+- Exercise Model
+- Workout Model
+- User Model
+
+- Workout Exercises join table
+- Workout Likes join table
+
 ## After Seeding
 
 You can use the following credentials to log in:
