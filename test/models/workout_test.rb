@@ -7,7 +7,7 @@ class WorkoutTest < ActiveSupport::TestCase
   end
 
   test "should belong to a user" do
-    user = users(:one) # fixtures in test/fixtures/users.yml
+    user = users(:one)
     workout = user.workouts.build(name: "Leg Day")
     assert workout.save, "Failed to save a valid workout"
   end
