@@ -19,18 +19,22 @@
     <section class="">
         <div class="my-2 py-4 px-2 bg-card rounded-xl">
             <h2>People who liked this workout</h2>
-            <div class="flex">
-                <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
-                <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
-                <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
+            <div class="flex gap-4 flex-wrap">
+                <% @workout.likers.each do |liker| %>
+                <div class="flex flex-col justify-center items-center">
+                    <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
+                    <p class="text-gray-500 text-sm">@<%= liker.email.split('@').first %></p>
+                </div>
+                <% end %>
             </div>
         </div>
         <div class="flex gap-3">
             <% if user_signed_in? %>
-                <%= button_to 'Like', like_workout_path(@workout), method: :post, class: 'bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl' %>
-                <%= button_to 'Unlike', unlike_workout_path(@workout), method: :delete, class: 'bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl' %>
-            <% else %>
-                <button disabled class="btn btn-secondary">Liked</button>
+                <% if current_user.likes.exists?(@workout.id) %>
+                    <%= button_to 'Unlike', unlike_workout_path(@workout), method: :delete, class: 'bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl' %>
+                <% else %>
+                    <%= button_to 'Like', like_workout_path(@workout), method: :post, class: 'bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl' %>
+                <% end %>
             <% end %>
         </div>
     </section>

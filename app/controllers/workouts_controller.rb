@@ -9,6 +9,7 @@ class WorkoutsController < ApplicationController
 
   def show
     @workout_exercises = @workout.workout_exercises
+    @workout = Workout.includes(:user, :likers).find(params[:id])
   end
 
   def update
