@@ -1,5 +1,6 @@
 <% provide(:title, "Profile") %>
 <% if @workouts.any? %>
+  <h1 class="bg-card p-2 rounded-2xl text-xl">Workouts you created: </h1>
   <div class="m-2 flex flex-col gap-2">
     <% @workouts.each do |workout| %>
         <%= render "workouts/workout", workout: workout %>
@@ -14,7 +15,7 @@
 <% end %>
 
 <% if @liked_workouts.any? %>
-    <h1 class="bg-card p-2 underline rounded-2xl text-xl">Your liked workouts: </h1>
+    <h1 class="bg-card p-2 rounded-2xl text-xl">Your liked workouts: </h1>
   <div class="m-2 flex flex-col gap-2">
     <% @liked_workouts.each do |workout| %>
         <%= render "workouts/workout", workout: workout %>
