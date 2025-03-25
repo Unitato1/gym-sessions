@@ -9,4 +9,6 @@ class User < ApplicationRecord
 
   has_many :likes_workout, dependent: :destroy
   has_many :likes, through: :likes_workout, source: "workout"
+
+  validates :email, presence: true, uniqueness: true, length: { minimum: 5, maximum: 40 }
 end

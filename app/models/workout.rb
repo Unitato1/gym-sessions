@@ -9,5 +9,5 @@ class Workout < ApplicationRecord
 
   accepts_nested_attributes_for :workout_exercises, allow_destroy: true
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { minimum: 3, maximum: 30 }
 end
