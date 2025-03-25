@@ -6,7 +6,7 @@
                 <div class="w-1/2">
                     <%= render "exercises/exercise", exercise: e.exercise %>
                 </div>
-                <div class="w-1/2 flex justify-center items-center gap-4">
+                <div class="w-1/2 flex flex-wrap justify-center items-center gap-4">
                     <% e.sets.times do %>
                     <div class="w-6 h-6 flex items-center justify-center bg-check-set rounded-full text-xs font-bold">
                         <%= e.reps %>
