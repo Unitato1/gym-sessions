@@ -2,10 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="workout-exercises"
 export default class extends Controller {
-  static targets = [ "template", "test" ]
+  static targets = [ "template", "workoutExerciseForm" ]
 
   initialize() {
-    this.index = Math.round(this.testTarget.childNodes.length / 6);
+    this.index = Math.round(this.workoutExerciseFormTarget.childNodes.length / 6);
   }
 
   connect() {
@@ -23,7 +23,7 @@ export default class extends Controller {
       this.updateNodeAttributes(node);
     });
 
-    this.testTarget.appendChild(exercise_form);
+    this.workoutExerciseFormTarget.appendChild(exercise_form);
   }
 
   updateNodeAttributes(node) {

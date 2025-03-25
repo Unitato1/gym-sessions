@@ -1,9 +1,9 @@
 <%= form_with model: exercise, class: "mx-2 bg-card rounded-xl" do |f| %>
-    <% if @exercise.errors.any? %>
+    <% if exercise.errors.any? %>
         <div class="text-red-600 p-4 md:text-xl flex flex-col gap-2">
-        <h2 class="text-2xl"><%= pluralize(@exercise.errors.count, "error") %> prohibited this exercise from being saved:</h2>
+        <h2 class="text-2xl"><%= pluralize(exercise.errors.count, "error") %> prohibited this exercise from being saved:</h2>
         <ul class="flex flex-col gap-1">
-            <% @exercise.errors.full_messages.each do |message| %>
+            <% exercise.errors.full_messages.each do |message| %>
             <li><%= message %></li>
             <% end %>
         </ul>

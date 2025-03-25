@@ -95,7 +95,7 @@ class WorkoutsController < ApplicationController
     @workout = Workout.find(params[:id])
   end
   def authorize_user
-    if @workout.user != current_user
+    if @workout.nil? || @workout.user != current_user
       redirect_to workouts_path, alert: "You are not authorized to edit or delete this workout."
     end
   end

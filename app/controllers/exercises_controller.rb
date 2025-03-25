@@ -45,7 +45,7 @@ class ExercisesController < ApplicationController
   end
 
   def authorize_user
-    if @exercise.user != current_user
+    if @exercise.nil? || @exercise.user != current_user
       redirect_to exercises_path, alert: "You are not authorized to edit or delete this exercise."
     end
   end

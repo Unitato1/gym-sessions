@@ -1,9 +1,9 @@
-<%= form_with model: @workout, class: "mx-2 bg-card rounded-xl" do |f| %>
-  <% if @workout.errors.any? %>
+<%= form_with model: workout, class: "mx-2 bg-card rounded-xl" do |f| %>
+  <% if workout.errors.any? %>
       <div class="text-red-600 p-4 md:text-xl flex flex-col gap-2">
-        <h2 class="text-2xl"><%= pluralize(@workout.errors.count, "error") %> prohibited this workout from being saved:</h2>
+        <h2 class="text-2xl"><%= pluralize(workout.errors.count, "error") %> prohibited this workout from being saved:</h2>
         <ul class="flex flex-col gap-1">
-          <% @workout.errors.full_messages.each do |message| %>
+          <% workout.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
@@ -14,7 +14,7 @@
     <%= f.text_field :name, class: "p-2 border-2" %>
   </div>
   <div class="bg-card flex flex-col p-4 m-auto gap-2" data-controller="workout-exercises">
-      <div data-workout-exercises-target="test" class="flex flex-col gap-4">
+      <div data-workout-exercises-target="workoutExerciseForm" class="flex flex-col gap-4">
           <%= f.fields_for :workout_exercises do |wef| %>
               <div data-workout-exercises-target="template" class="flex flex-col gap-4">
                 <div class="border-1 p-1 w-fit">
