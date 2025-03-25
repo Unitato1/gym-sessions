@@ -1,6 +1,6 @@
 class WorkoutsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_workout, only: [ :destroy, :edit, :update, :show, :like ]
+  before_action :find_workout, only: [ :destroy, :edit, :update, :show, :like, :unlike ]
   before_action :authorize_user, only: [ :edit, :update, :destroy ]
 
   def index
@@ -48,7 +48,8 @@ class WorkoutsController < ApplicationController
 
   def destroy
     name = @workout.name
-    if @workout.destroy
+    @workout.destroy
+    if @workout.destroyed?
       redirect_to workouts_path, alert: "Deleted " + name + " workout!"
     else
       render @workout, status: :unprocessable_entity
@@ -58,9 +59,29 @@ class WorkoutsController < ApplicationController
   def like
     @workout = Workout.find(params[:id])
     if current_user.likes << @workout
-      redirect_to current_user, notice: "Workout liked!"
+      redirect_to current_user, alert: "Workout liked!"
     else
       redirect_to workout_path(@workout), alert: "Something went wrong."
+    end
+  end
+  def like
+    @like = current_user.likes_workout.build(workout: @workout)
+    if @like.save
+      redirect_to current_user, alert: "Liked #{@workout.name}"
+    else
+      redirect_back fallback_location: current_user, alert: "You already liked #{@workout.name}."
+    end
+  end
+
+  def unlike
+    if current_user.likes.exists?(@workout.id)
+      if current_user.likes.destroy(@workout)
+        redirect_to current_user, alert: "Unliked #{@workout.name}"
+      else
+        redirect_back fallback_location: current_user, alert: "Something went wrong."
+      end
+    else
+      redirect_back fallback_location: current_user, alert: "The #{@workout.name} is not liked by you"
     end
   end
 

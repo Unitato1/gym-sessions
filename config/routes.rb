@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :workouts do
     member do
       post "like"
+      delete "unlike"
     end
   end
   resources :exercises

@@ -27,11 +27,11 @@
         </div>
         <div class="flex gap-3">
             <% if user_signed_in? %>
-                <%= button_to 'Like', like_workout_path(@workout), method: :post, class: 'btn btn-primary' %>
+                <%= button_to 'Like', like_workout_path(@workout), method: :post, class: 'bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl' %>
+                <%= button_to 'Unlike', unlike_workout_path(@workout), method: :delete, class: 'bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl' %>
             <% else %>
                 <button disabled class="btn btn-secondary">Liked</button>
             <% end %>
-            <button class="bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl">Add to favourite</button>
         </div>
     </section>
     <%= render "workouts/shared/links", workout: @workout %>
