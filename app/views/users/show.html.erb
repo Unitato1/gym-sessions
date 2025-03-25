@@ -12,3 +12,18 @@
       </h1>
   </div>
 <% end %>
+
+<% if @liked_workouts.any? %>
+    <h1 class="bg-card p-2 underline rounded-2xl text-xl">Your liked workouts: </h1>
+  <div class="m-2 flex flex-col gap-2">
+    <% @liked_workouts.each do |workout| %>
+        <%= render "workouts/workout", workout: workout %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="flex flex-col m-2 bg-card text-xl lg:text-3xl justify-center align-middle rounded-xl p-5 gap-4">
+      <h1 class="">
+        You should like some <%= link_to "workouts", workouts_path, class: "underline w-fit" %>.
+      </h1>
+  </div>
+<% end %>
