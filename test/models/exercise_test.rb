@@ -14,13 +14,13 @@ class ExerciseTest < ActiveSupport::TestCase
 
   test "should belong to a user" do
     user = users(:one)
-    exercise = user.exercises.build(name: "Leg Day")
+    exercise = user.exercises.build(name: "Leg Day", description: "New desc")
     assert exercise.save, "Failed to save a valid exercise"
   end
 
   test "should not belong to a user" do
     user = users(:one)
-    exercise = user.exercises.build()
+    exercise = user.exercises.build(name: nil)
     assert_not exercise.save, "Saved a invalid exercise with user without name"
   end
 end
