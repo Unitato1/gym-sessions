@@ -23,14 +23,14 @@
                 <% @workout.likers.each do |liker| %>
                 <div class="flex flex-col justify-center items-center">
                     <%= image_tag 'icons/profile.png', alt: 'Profile img' %>
-                    <p class="text-gray-500 text-sm">@<%= liker.email.split('@').first %></p>
+                    <%= link_to "@#{liker.email.split('@').first}", user_path(liker.id), class: "text-gray-500 text-sm" %>
                 </div>
                 <% end %>
             </div>
         </div>
         <div class="flex gap-3">
             <% if user_signed_in? %>
-                <% if current_user.likes.exists?(@workout.id) %>
+                <% if current_user.likes.exists? @workout.id  %>
                     <%= button_to 'Unlike', unlike_workout_path(@workout), method: :delete, class: 'bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl' %>
                 <% else %>
                     <%= button_to 'Like', like_workout_path(@workout), method: :post, class: 'bg-card flex justify-center items-center mt-4 px-4 py-2 rounded-xl' %>

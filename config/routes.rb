@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
   end
   resources :exercises
-  resource :user, only: [ :show ]
+  resources :users, only: [ :show ]
   # Defines the root path route ("/")
   root "exercises#index"
 end
